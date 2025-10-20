@@ -141,11 +141,17 @@ const App = () => {
             // <p className='text-white'>Loading...</p>
              <Spinner/>
           ): errorMessage ? (
-            <div className='h-15 w-25 bg-linear-to-r from-[#520202] to-[#FF0D1D]'>
-              <p className='text-[#16caea]'>{errorMessage}</p>
+            <div className='flex justify-center items-center min-h-[150px] px-4'>
+              <p className='bg-gradient-to-r from-[#520202] via-[#7a0a0a] to-[#FF0D1D] 
+                  text-[#23d3f3] text-center font-semibold 
+                  px-6 py-4 rounded-2xl 
+                  shadow-lg shadow-red-900/40 
+                  max-w-md w-full 
+                  border border-red-700/30
+                  animate-pulse'>{errorMessage}</p>
             </div>
           ):(
-            <ul className='mx-2 grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:mx-6 lg::gap-6  '>
+            <ul className='mx-2 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 lg:mx-6 lg::gap-8  '>
               {movieList.map((movie)=>(
                 <MovieCard key={movie.id} movie={movie}/>
               ))}
