@@ -58,7 +58,7 @@ const App = () => {
     
      setMovieList(data.results || []);
 
-     if(query && data.results.length > 0){
+     if(query && data?.results?.length > 0){
      await updateSearchTerm(query, data.results[0]);
      }
     
