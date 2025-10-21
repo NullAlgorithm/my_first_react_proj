@@ -50,16 +50,27 @@ const App = () => {
 
      const data = await response.json();
      console.log(data)
-     if(data.Response ==="False"){
-      setErrorMessage(data.error || 'failed to fetch movies ');
-      setMovieList([]);
-      return;
-     }
+
+    //  if(data.Response ==="False"){
+    //   setErrorMessage(data.error || 'failed to fetch movies ');
+    //   setMovieList([]);
+    //   return;
+    //  }
     
+       if (!data || !Array.isArray(data.results)) {
+      console.error("Invalid TMDB response:", data);
+      setMovieList([]);
+       setErrorMessage("Failed to load movies. Please try again later.");
+      return;
+    }
+
+
      setMovieList(data.results || []);
 
-     if(query && data?.results?.length > 0){
+     if(query && data.results.length > 0){
      await updateSearchTerm(query, data.results[0]);
+     }else{
+      console.log("data can't be access")
      }
     
     }
@@ -100,7 +111,7 @@ const App = () => {
       </div>
         <div className='relative  '>  
           
-          <header className='mx-5  text-[30px] xl:text-5xl text-center   flex justify-center items-center lg:mx-90 lg:text-[42px] text-[#A0AEC0]  font-bold'>
+          <header className='mx-5  text-[30px] xl:text-5xl text-center   flex justify-center items-center lg:mx-60 lg:text-[42px] text-[#A0AEC0]  font-bold'>
             <h1>Find &nbsp;
                <span className=' font-serif  bg-linear-to-r from-[#b098f1] to-[ABBBFF] bg-clip-text text-transparent'>Movies </span>
               You'll Enjoy Without The Hassle
